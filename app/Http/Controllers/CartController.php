@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 require __DIR__.'/../../../vendor/autoload.php';
+require_once("phpqrcode/qrlib.php");
 
 use App\Batch;
 use App\POSProduct;
@@ -241,10 +242,13 @@ class CartController extends Controller {
 
         $app_settings = \DB::table("app_config")->get()->first();
 
+        QRcode::png("testing123", "test.png", 'L', 10, 0);
+
+
         /* Information for the receipt */
         $allItems = array(
             foreach ($items as $item){
-                new item($item[name], $item[price]);
+                allItems.push($item)
             }
         );
         $subtotal = new item('Subtotal', '12.95');
@@ -255,10 +259,14 @@ class CartController extends Controller {
         $date = "Monday 6th of April 2015 02:56:25 PM";
 
 
-
+        $img = EscposImage::load("test.png"); // Load image
         $connector = new FilePrintConnector("/dev/usb/lp0");
 
         $printer = new Printer($connector);
+
+        $printer -> bitImage($img);
+        $printer -> feed();
+        $printer -> text("Code printed from image\n");
 
         /* Name of shop */
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);

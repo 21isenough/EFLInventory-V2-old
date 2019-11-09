@@ -16,7 +16,6 @@ use Response;
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
-use 
 
 class CartController extends Controller {
 

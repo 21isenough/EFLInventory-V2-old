@@ -15,7 +15,6 @@ use Response;
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
-use Phpqrcode\Qrlib\QRcode;
 
 class CartController extends Controller {
 

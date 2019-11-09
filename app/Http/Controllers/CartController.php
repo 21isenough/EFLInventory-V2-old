@@ -261,6 +261,12 @@ class CartController extends Controller {
             $printer -> text($item);
         }
         $printer -> feed();
+
+        /* Total / tax of receipt */
+        $printer -> setEmphasis(true);
+        $printer -> text("Total INVOICE\n");
+        $printer -> setEmphasis(false);
+        $printer -> text($sales_group.total_amount);
         
         /* Footer */
         $printer -> feed(2);

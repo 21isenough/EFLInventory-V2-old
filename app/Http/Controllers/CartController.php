@@ -255,17 +255,12 @@ class CartController extends Controller {
         /* Title of receipt */
         $printer -> setEmphasis(true);
         $printer -> text("SALES INVOICE\n");
+        $printer -> text($receipt_no);        
         $printer -> setEmphasis(false);
         $printer -> setEmphasis(true);
         $printer -> text($total_amount);
         $printer -> setEmphasis(false);
         $printer -> feed();
-        
-        /* Tax and total */
-        $printer -> text($tax);
-        $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
-        $printer -> text($total);
-        $printer -> selectPrintMode();
         
         /* Footer */
         $printer -> feed(2);

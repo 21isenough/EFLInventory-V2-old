@@ -279,20 +279,26 @@ class CartController extends Controller {
         /* Title of receipt */
         $printer -> setEmphasis(true);
         $printer -> text("SALES INVOICE\n");
-        $printer -> text($lnurl);
         $printer -> setEmphasis(false);
 
-        foreach ($allItems as $item) {
+        /* Items */
+        $printer -> setJustification(Printer::JUSTIFY_LEFT);
+        $printer -> setEmphasis(true);
+        $printer -> text(new item('', '$'));
+        $printer -> setEmphasis(false);
+        foreach ($items as $item) {
             $printer -> text($item);
         }
+        $printer -> setEmphasis(true);
+        $printer -> text($subtotal);
+        $printer -> setEmphasis(false);
         $printer -> feed();
 
-        /* Total / tax of receipt */
-        $printer -> setEmphasis(true);
-        $printer -> text("Total INVOICE\n");
-        $printer -> setEmphasis(false);
-        $printer -> text($sales_group['total_amount']);
-        $printer -> text($lnurl);
+        /* Tax and total */
+        $printer -> text($tax);
+        $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
+        $printer -> text($total);
+        $printer -> selectPrintMode();
         
         /* Footer */
         $printer -> feed(2);

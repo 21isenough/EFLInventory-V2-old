@@ -266,7 +266,7 @@ class CartController extends Controller {
         $printer -> setEmphasis(true);
         $printer -> text("Total INVOICE\n");
         $printer -> setEmphasis(false);
-        $printer -> text($sales_group.total_amount);
+        $printer -> text($sales_group.$total_amount);
         
         /* Footer */
         $printer -> feed(2);

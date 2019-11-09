@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 require __DIR__.'/../../../vendor/autoload.php';
-require_once("phpqrcode/qrlib.php");
 
 use App\Batch;
 use App\POSProduct;
@@ -263,6 +262,8 @@ class CartController extends Controller {
         /* Date is kept the same for testing */
         // $date = date('l jS \of F Y h:i:s A');
         $date = "Monday 6th of April 2015 02:56:25 PM";
+
+        require_once("phpqrcode/qrlib.php");
 
         QRcode::png("testing123", "test.png", 'L', 10, 0);
 

@@ -273,7 +273,7 @@ class CartController extends Controller {
         $printer -> text("SALES INVOICE\n");
         $printer -> setEmphasis(false);
 
-        foreach ($allItems as $item) {
+        foreach ($items as $item) {
             $printer -> text($item);
         }
         $printer -> feed();

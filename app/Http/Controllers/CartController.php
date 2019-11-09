@@ -258,7 +258,7 @@ class CartController extends Controller {
         $printer -> setEmphasis(false);
 
         foreach ($items as $item) {
-            $printer -> text($item;
+            $printer -> text($item);
         }
         $printer -> feed();
 

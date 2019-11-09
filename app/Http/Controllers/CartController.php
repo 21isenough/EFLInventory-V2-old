@@ -243,10 +243,9 @@ class CartController extends Controller {
 
         /* Information for the receipt */
         $allItems = array(
-            new item("Example item #1", "4.00"),
-            new item("Another thing", "3.50"),
-            new item("Something else", "1.00"),
-            new item("A final item", "4.45"),
+            foreach ($items as $item){
+                new item($item[name], $item[price])
+            }
         );
         $subtotal = new item('Subtotal', '12.95');
         $tax = new item('A local tax', '1.30');
@@ -273,7 +272,7 @@ class CartController extends Controller {
         $printer -> text("SALES INVOICE\n");
         $printer -> setEmphasis(false);
 
-        foreach ($items as $item) {
+        foreach ($allItems as $item) {
             $printer -> text($item);
         }
         $printer -> feed();

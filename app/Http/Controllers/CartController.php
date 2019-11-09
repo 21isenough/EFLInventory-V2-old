@@ -257,7 +257,7 @@ class CartController extends Controller {
         $printer -> text("SALES INVOICE\n");
         $printer -> setEmphasis(false);
         $printer -> setEmphasis(true);
-        $printer -> text($subtotal);
+        $printer -> text($total_amount);
         $printer -> setEmphasis(false);
         $printer -> feed();
         

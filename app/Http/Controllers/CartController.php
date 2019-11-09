@@ -1,5 +1,5 @@
 <?php
-
+require __DIR__ . '/../../../../vendor/autoload.php';
 namespace App\Http\Controllers;
 
 use App\Batch;
@@ -10,6 +10,8 @@ use App\SalesHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Response;
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 
 class CartController extends Controller {
 
@@ -232,6 +234,23 @@ class CartController extends Controller {
                 "profit" => doubleval($profit),
                 "loss" => doubleval($loss)
             ]);
+
+            try {
+                // Enter the device file for your USB printer here
+                $connector = new FilePrintConnector("/dev/usb/lp0");
+                //$connector = new FilePrintConnector("/dev/usb/lp1");
+                //$connector = new FilePrintConnector("/dev/usb/lp2");
+            
+                /* Print a "Hello world" receipt" */
+                $printer = new Printer($connector);
+                $printer -> text("Hello World!\n");
+                $printer -> cut();
+            
+                /* Close printer */
+                $printer -> close();
+            } catch (Exception $e) {
+                echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+            }
         }
 
         $app_settings = \DB::table("app_config")->get()->first();

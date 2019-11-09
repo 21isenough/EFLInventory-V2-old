@@ -255,11 +255,11 @@ class CartController extends Controller {
         /* Title of receipt */
         $printer -> setEmphasis(true);
         $printer -> text("SALES INVOICE\n");
-        $printer -> text($receipt_no);        
         $printer -> setEmphasis(false);
-        $printer -> setEmphasis(true);
-        $printer -> text($total_amount);
-        $printer -> setEmphasis(false);
+
+        foreach ($items as $item) {
+            $printer -> text($item);
+        }
         $printer -> feed();
         
         /* Footer */
@@ -268,7 +268,6 @@ class CartController extends Controller {
         $printer -> text("Thank you for shopping at ExampleMart\n");
         $printer -> text("For trading hours, please visit example.com\n");
         $printer -> feed(2);
-        $printer -> text($date . "\n");
         /* Cut the receipt and open the cash drawer */
         $printer -> cut();
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 require __DIR__.'/../../../vendor/autoload.php';
-require __DIR__.'/../../../usr/phpqrcode/qrlib.php';
+require_once __DIR__.'/../../../usr/phpqrcode/qrlib.php';
 
 use App\Batch;
 use App\POSProduct;
@@ -16,6 +16,7 @@ use Response;
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use 
 
 class CartController extends Controller {
 

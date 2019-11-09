@@ -620,7 +620,13 @@
         });
         
         $("#println").click(function() {
-            console.log("hello")
+            var mode = 'popup' //'iframe'; //popup
+            var close = true;
+            var options = {
+                mode: mode,
+                popClose: close
+            };
+            $("div.printableArea");
         });
 
         // Remove all items from cart

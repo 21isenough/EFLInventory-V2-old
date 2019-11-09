@@ -7,7 +7,6 @@ use App\POSProduct;
 use App\ProductVariation;
 use App\SalesGroup;
 use App\SalesHistory;
-use App\ReceiptPrinter;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Response;
@@ -233,12 +232,6 @@ class CartController extends Controller {
                 "profit" => doubleval($profit),
                 "loss" => doubleval($loss)
             ]);
-
-            try {
-                ReceiptPrinter.printReceipt();
-            } catch (Exception $e) {
-                echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
-            }
         }
 
         $app_settings = \DB::table("app_config")->get()->first();

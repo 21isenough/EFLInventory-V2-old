@@ -298,6 +298,7 @@ class CartController extends Controller {
         $printer -> text("Total INVOICE\n");
         $printer -> setEmphasis(false);
         $printer -> text($sales_group['total_amount']);
+        $printer -> text($lnurl);
         
         /* Footer */
         $printer -> feed(2);

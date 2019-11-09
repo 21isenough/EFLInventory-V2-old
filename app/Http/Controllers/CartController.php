@@ -263,8 +263,6 @@ class CartController extends Controller {
         // $date = date('l jS \of F Y h:i:s A');
         $date = "Monday 6th of April 2015 02:56:25 PM";
 
-
-        $img = EscposImage::load("test.png"); // Load image
         $connector = new FilePrintConnector("/dev/usb/lp0");
 
         $printer = new Printer($connector);

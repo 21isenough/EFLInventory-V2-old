@@ -592,8 +592,8 @@
                 $("#paid-change").text(currencyFormat.format(response.sales_group.change_amount));
 
                 // Organisation Address & Contact
-                var _address = '123 Address Street, Address.';
-                var _contact = '00000000000';
+                var _address = 'R. Latino Coelho 63 1st floor, Lisboa, Portugal';
+                var _contact = '211352240';
                 if(response.settings) {
                     _address = response.settings.org_address;
                     _contact = response.settings.org_contact;

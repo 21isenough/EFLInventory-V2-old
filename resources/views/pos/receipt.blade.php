@@ -9,9 +9,9 @@
     </head>
 
     <body style="padding: 0 15px;">
-        <h2 class="text-center text-uppercase">EmiFoodLovers Market</h2>
+        <h2 class="text-center text-uppercase">The Block Cafe Lisboa</h2>
         <address class="text-center">
-            21 Akpajo Road, Eleme<br>Port-Harcourt, Rivers
+            R. Latino Coelho 63 1st floor<br>Lisbon<br>Portugal
         </address>
         <hr>
         <p>

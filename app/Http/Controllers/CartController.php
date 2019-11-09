@@ -241,13 +241,6 @@ class CartController extends Controller {
 
         $app_settings = \DB::table("app_config")->get()->first();
 
-        // return receipt number and app settings
-        return Response::json([
-            "sales_group" => $sales_group,
-            "items" => $items,
-            "settings" => $app_settings
-        ]);
-
         $connector = new FilePrintConnector("/dev/usb/lp0");
 
         $printer = new Printer($connector);
@@ -272,6 +265,13 @@ class CartController extends Controller {
         $printer -> pulse();
 
         $printer -> close();
+
+        // return receipt number and app settings
+        return Response::json([
+            "sales_group" => $sales_group,
+            "items" => $items,
+            "settings" => $app_settings
+        ]);
     }
 
     /**

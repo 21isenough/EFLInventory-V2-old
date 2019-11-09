@@ -286,7 +286,7 @@ class CartController extends Controller {
         $printer -> setEmphasis(true);
         $printer -> text(new item('', '$'));
         $printer -> setEmphasis(false);
-        foreach ($items as $item) {
+        foreach ($allItems as $item) {
             $printer -> text($item);
         }
         $printer -> setEmphasis(true);

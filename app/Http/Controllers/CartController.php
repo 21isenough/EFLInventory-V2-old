@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 require __DIR__.'/../../../vendor/autoload.php';
+require __DIR__.'/../../../usr/phpqrcode/qrlib.php';
 
 use App\Batch;
 use App\POSProduct;
@@ -263,9 +264,15 @@ class CartController extends Controller {
         // $date = date('l jS \of F Y h:i:s A');
         $date = "Monday 6th of April 2015 02:56:25 PM";
 
+        QRcode::png("testing123", "test.png", 'L', 10, 0);
+
+        $img = EscposImage::load("test.png");
+
+
         $connector = new FilePrintConnector("/dev/usb/lp0");
 
         $printer = new Printer($connector);
+        $printer -> bitImage($img);
         $printer -> feed();
         $printer -> text("Code printed from image\n");
 

@@ -241,6 +241,22 @@ class CartController extends Controller {
 
         $app_settings = \DB::table("app_config")->get()->first();
 
+        /* Information for the receipt */
+        $allItems = array(
+            new item("Example item #1", "4.00"),
+            new item("Another thing", "3.50"),
+            new item("Something else", "1.00"),
+            new item("A final item", "4.45"),
+        );
+        $subtotal = new item('Subtotal', '12.95');
+        $tax = new item('A local tax', '1.30');
+        $total = new item('Total', '14.25', true);
+        /* Date is kept the same for testing */
+        // $date = date('l jS \of F Y h:i:s A');
+        $date = "Monday 6th of April 2015 02:56:25 PM";
+
+
+
         $connector = new FilePrintConnector("/dev/usb/lp0");
 
         $printer = new Printer($connector);
@@ -257,7 +273,7 @@ class CartController extends Controller {
         $printer -> text("SALES INVOICE\n");
         $printer -> setEmphasis(false);
 
-        foreach ($items as $item) {
+        foreach ($allItems as $item) {
             $printer -> text($item);
         }
         $printer -> feed();

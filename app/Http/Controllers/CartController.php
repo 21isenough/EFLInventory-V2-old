@@ -266,8 +266,6 @@ class CartController extends Controller {
         $connector = new FilePrintConnector("/dev/usb/lp0");
 
         $printer = new Printer($connector);
-
-        $printer -> bitImage($img);
         $printer -> feed();
         $printer -> text("Code printed from image\n");
 

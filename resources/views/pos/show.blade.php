@@ -33,9 +33,8 @@
                             <button class="btn btn-info btn-md" onclick="window.location.reload();">
                                 <i class="mdi mdi-arrow-left-bold pr-2"></i> Next Sale
                             </button>
-                        </div>
-                        <div class="pull-right">
-                            <button id="print" class="btn btn-danger btn-md" type="button"> <span><i class="fa fa-print pr-1"></i> Print</span> </button>
+                            <button id="print" class="btn btn-danger btn-md" type="button"> <span><i class="fa fa-print pr-1"></i> Print (Cash Change)</span> </button>
+                            <button id="println" class="btn btn-danger btn-md" type="button"> <span><i class="fa fa-print pr-1"></i> Print (Sats Change)</span> </button>
                         </div>
                     </div>
                 </div>
@@ -618,6 +617,10 @@
                 popClose: close
             };
             $("div.printableArea").printArea(options);
+        });
+        
+        $("#println").click(function() {
+            console.log("hello")
         });
 
         // Remove all items from cart

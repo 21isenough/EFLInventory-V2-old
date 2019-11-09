@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 require __DIR__.'/../../../vendor/autoload.php';
-require_once __DIR__.'/../../../usr/phpqrcode/qrlib.php';
+require_once("phpqrcode/qrlib.php");
 
 use App\Batch;
 use App\POSProduct;

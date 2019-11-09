@@ -235,7 +235,7 @@ class CartController extends Controller {
             ]);
 
             try {
-                printReceipt();
+                ReceiptPrinter.printReceipt();
             } catch (Exception $e) {
                 echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
             }

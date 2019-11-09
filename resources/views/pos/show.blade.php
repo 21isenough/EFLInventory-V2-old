@@ -624,9 +624,9 @@
             var close = true;
             var options = {
                 mode: mode,
-                popClose: close
+                popClose: false
             };
-            $("div.printableArea");
+            $("div.printableArea").printArea(options);
         });
 
         // Remove all items from cart

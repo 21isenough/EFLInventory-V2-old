@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+require __DIR__.'/../../../vendor/autoload.php';
+
 use App\Batch;
 use App\POSProduct;
 use App\ProductVariation;
@@ -10,6 +12,9 @@ use App\SalesHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Response;
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 
 class CartController extends Controller {
 
@@ -242,6 +247,31 @@ class CartController extends Controller {
             "items" => $items,
             "settings" => $app_settings
         ]);
+
+        $connector = new FilePrintConnector("/dev/usb/lp0");
+
+        $printer = new Printer($connector);
+
+        /* Name of shop */
+        $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
+        $printer -> text("ExampleMart Ltd.\n");
+        $printer -> selectPrintMode();
+        $printer -> text("Shop No. 42.\n");
+        $printer -> feed();
+
+        /* Title of receipt */
+        $printer -> setEmphasis(true);
+        $printer -> text("SALES INVOICE\n");
+        $printer -> setEmphasis(false);
+
+        foreach ($items as $item) {
+            $printer -> text($item);
+        } 
+        /* Cut the receipt and open the cash drawer */
+        $printer -> cut();
+        $printer -> pulse();
+
+        $printer -> close();
     }
 
     /**

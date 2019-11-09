@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 require __DIR__.'/../../../vendor/autoload.php';
-require_once("phpqrcode/qrlib.php");
 
 use App\Batch;
 use App\POSProduct;
@@ -242,8 +241,15 @@ class CartController extends Controller {
 
         $app_settings = \DB::table("app_config")->get()->first();
 
-        QRcode::png("testing123", "test.png", 'L', 10, 0);
-
+        $data_array =  array(
+                "euro" => "0.20"
+        );
+        
+        $make_call = callAPI('POST', 'http://192.168.1.203:5000/lnurl', json_encode($data_array));
+        $response = json_decode($make_call, true);
+        $errors   = $response['response']['errors'];
+        $data     = $response['response']['data'][0];
+        $lnurl    = $response['lnurl']
 
         /* Information for the receipt */
         $allItems = array(
@@ -279,6 +285,7 @@ class CartController extends Controller {
         /* Title of receipt */
         $printer -> setEmphasis(true);
         $printer -> text("SALES INVOICE\n");
+        $printer -> text($lnurl);
         $printer -> setEmphasis(false);
 
         foreach ($allItems as $item) {

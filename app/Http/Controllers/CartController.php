@@ -247,8 +247,6 @@ class CartController extends Controller {
         
         $make_call = callAPI('POST', 'http://192.168.1.203:5000/lnurl', json_encode($data_array));
         $response = json_decode($make_call, true);
-        $errors   = $response['response']['errors'];
-        $data     = $response['response']['data'][0];
         $lnurl    = $response['lnurl'];
 
         /* Information for the receipt */

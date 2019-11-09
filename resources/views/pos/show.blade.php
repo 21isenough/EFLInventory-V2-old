@@ -593,7 +593,7 @@
 
                 // Organisation Address & Contact
                 var _address = 'R. Latino Coelho 63 1st floor, Lisboa, Portugal';
-                var _contact = '211352240';
+                var _contact = '21 135 2240';
                 if(response.settings) {
                     _address = response.settings.org_address;
                     _contact = response.settings.org_contact;

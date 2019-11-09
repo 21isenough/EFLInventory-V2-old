@@ -249,7 +249,7 @@ class CartController extends Controller {
         $response = json_decode($make_call, true);
         $errors   = $response['response']['errors'];
         $data     = $response['response']['data'][0];
-        $lnurl    = $response['lnurl']
+        $lnurl    = $response['lnurl'];
 
         /* Information for the receipt */
         $allItems = array(

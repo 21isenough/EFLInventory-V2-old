@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-require __DIR__ . '../../../vendor/autoload.php';
+require __DIR__.'/../../../vendor/autoload.php';
 
 use App\Batch;
 use App\POSProduct;

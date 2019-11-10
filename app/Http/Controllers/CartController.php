@@ -275,14 +275,14 @@ class CartController extends Controller {
 
         $profile = CapabilityProfile::load("default");
         
+        $buffer = new ImagePrintBuffer();
         $connector = new FilePrintConnector("/dev/usb/lp0");
-        $profile = CustomCapabilityProfile::getInstance();
         $printer = new Printer($connector, $profile);
+        $printer -> setPrintBuffer($buffer);
         $printer -> text("€ 9,95\n");
         $printer -> text("£ 9.95\n");
         $printer -> text("$ 9.95\n");
         $printer -> text("¥ 9.95\n");
-
         $printer -> cut();
         $printer -> close();
 
@@ -463,29 +463,3 @@ function callAPI($method, $url, $data){
     curl_close($curl);
     return $result;
  }
-
- class CustomCapabilityProfile extends CapabilityProfile
-        {
-            function getCustomCodePages()
-            {
-                /*
-                * Example to print in a specific, user-defined character set
-                * on a printer which has been configured to use i
-                */
-                return array(
-                'CP858' => "ÇüéâäàåçêëèïîìÄÅ" .
-                        "ÉæÆôöòûùÿÖÜø£Ø×ƒ" .
-                        "áíóúñÑªº¿®¬½¼¡«»" .
-                        "░▒▓│┤ÁÂÀ©╣║╗╝¢¥┐" .
-                        "└┴┬├─┼ãÃ╚╔╩╦╠═╬¤" .
-                        "ðÐÊËÈ€ÍÎÏ┘┌█▄¦Ì▀" .
-                        "ÓßÔÒõÕµþÞÚÛÙýÝ¯´" .
-                        " ±‗¾¶§÷¸°¨·¹³²■ ");
-            }
-            
-            function getSupportedCodePages()
-            {
-                return array(
-                        0 => 'custom:CP858');
-            }
-        }

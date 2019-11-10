@@ -251,9 +251,10 @@ class CartController extends Controller {
         $lnurl    = $response['lnurl'];
 
         /* Information for the receipt */
-        $allItems = array(
-            new item($item['name'], $item['price']),
-        );
+        $allItems = array();
+        foreach($items as $item) {
+            allItems.push(new item($item['name'], $item['price']));
+        }
         $subtotal = new item('Subtotal', '12.95');
         $tendered = new item('Cash received', $sales_group.['tendered_amount']);
         $tendered = new item('Change', $sales_group.['change']);
@@ -290,7 +291,7 @@ class CartController extends Controller {
         $printer -> setEmphasis(true);
         $printer -> text(new item('', '€'));
         $printer -> setEmphasis(false);
-        foreach ($items as $item) {
+        foreach ($allItems as $item) {
             $printer -> text($item);
         }
         $printer -> setEmphasis(true);

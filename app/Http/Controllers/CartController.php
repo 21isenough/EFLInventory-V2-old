@@ -250,12 +250,10 @@ class CartController extends Controller {
         $lnurl    = $response['lnurl'];
 
         /* Information for the receipt */
-        $allItems = array(
-            new item("Example item #1", "4.00"),
-            new item("Another thing", "3.50"),
-            new item("Something else", "1.00"),
-            new item("A final item", "4.45"),
-        );
+        $allItems = array();
+        foreach ($items as $item){
+            $allItems[$items] .= "{$item->name}, {$item->price}";
+        };
         $subtotal = new item('Subtotal', '12.95');
         $tax = new item('A local tax', '1.30');
         $total = new item('Total', '14.25', true);
@@ -263,11 +261,11 @@ class CartController extends Controller {
         // $date = date('l jS \of F Y h:i:s A');
         $date = "Monday 6th of April 2015 02:56:25 PM";
 
-        require_once("phpqrcode/qrlib.php");
+        // require_once("phpqrcode/qrlib.php");
 
-        QRcode::png("testing123", "test.png", 'L', 10, 0);
+        // QRcode::png("testing123", "test.png", 'L', 10, 0);
 
-        $img = EscposImage::load("test.png");
+        // $img = EscposImage::load("test.png");
 
 
         $connector = new FilePrintConnector("/dev/usb/lp0");

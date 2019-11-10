@@ -274,8 +274,11 @@ class CartController extends Controller {
         $img = EscposImage::load("test.png");
 
         $profile = CapabilityProfile::load("default");
+        
+        $buffer = new ImagePrintBuffer();
         $connector = new FilePrintConnector("/dev/usb/lp0");
         $printer = new Printer($connector, $profile);
+        $printer -> setPrintBuffer($buffer);
         $printer -> text("€ 9,95\n");
         $printer -> text("£ 9.95\n");
         $printer -> text("$ 9.95\n");

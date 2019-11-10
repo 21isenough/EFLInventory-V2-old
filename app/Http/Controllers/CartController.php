@@ -292,8 +292,7 @@ class CartController extends Controller {
         $printer -> text(new item('', 'EUR'));
         $printer -> setEmphasis(false);
         foreach ($items as $item) {
-            $ruben = new item($item['name'],$item['price']);
-            $printer -> text($ruben);
+            $printer -> text(new item($item['name'],$item['price']));
         }
                 
         $printer -> setEmphasis(true);

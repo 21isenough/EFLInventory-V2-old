@@ -13,9 +13,11 @@ use App\SalesHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Response;
-use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\CapabilityProfile;
+use Mike42\Escpos\Printer;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\PrintBuffers\ImagePrintBuffer;
 
 class CartController extends Controller {
 
@@ -271,8 +273,15 @@ class CartController extends Controller {
 
         $img = EscposImage::load("test.png");
 
-
+        $profile = CapabilityProfile::load("default");
         $connector = new FilePrintConnector("/dev/usb/lp0");
+        $printer = new Printer($connector, $profile);
+        $printer -> text("€ 9,95\n");
+        $printer -> text("£ 9.95\n");
+        $printer -> text("$ 9.95\n");
+        $printer -> text("¥ 9.95\n");
+        $printer -> cut();
+        $printer -> close();
 
         $printer = new Printer($connector);
         

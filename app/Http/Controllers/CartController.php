@@ -277,8 +277,9 @@ class CartController extends Controller {
 
 
         $connector = new FilePrintConnector("/dev/usb/lp0");
+        $profile = CapabilityProfile::load("POS-5890");
 
-        $printer = new Printer($connector);
+        $printer = new Printer($connector, $profile);
 
         /* Print top logo */
         if ($profile->getSupportsGraphics()) {

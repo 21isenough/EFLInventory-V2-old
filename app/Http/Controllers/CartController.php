@@ -293,7 +293,10 @@ class CartController extends Controller {
         $printer -> setEmphasis(false);
         foreach ($allItems as $item) {
             $printer -> text($item);
+            
         }
+        $printer -> text($items);
+        $printer -> text(count($items));        
         $printer -> setEmphasis(true);
         $printer -> text($subtotal);
         $printer -> setEmphasis(false);

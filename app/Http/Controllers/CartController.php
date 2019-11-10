@@ -175,7 +175,7 @@ class CartController extends Controller {
             $product_names .= "{$item->name}, ";
         }
 
-        $last_receipt_no = 10285142;
+        $last_receipt_no = 1285142;
         $_last_sale = SalesGroup::all()->sortByDesc("id");
         if(count($_last_sale) > 0) {
             $last_receipt_no = $_last_sale->first()->receipt_no;

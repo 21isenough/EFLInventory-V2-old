@@ -251,12 +251,10 @@ class CartController extends Controller {
         $lnurl    = $response['lnurl'];
 
         /* Information for the receipt */
-        $allItems = array(
-            new item("Example item #1", "4.00"),
-            new item("Another thing", "3.50"),
-            new item("Something else", "1.00"),
-            new item("A final item", "4.45"),
-        );
+        $allItems = array();
+        foreach ($items as $item){
+            $allItems[$items] = new item($item->name, $item->price);
+        }
         $subtotal = new item('Subtotal', '12.95');
         $tax = new item('A local tax', '1.30');
         $total = new item('Total', '14.25', true);
@@ -266,7 +264,7 @@ class CartController extends Controller {
 
         require_once("phpqrcode/qrlib.php");
 
-        \QRcode::png($lnurl, "test.png", 'L', 10, 0);
+        \QRcode::png($lnurl, "test.png", 'L', 5, 0);
 
         $img = EscposImage::load("test.png");
 

@@ -300,7 +300,7 @@ class CartController extends Controller {
 
         /* Tax and total */
         $printer -> text($tendered);
-        $printer -> text($chaneg);
+        $printer -> text($change);
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
         $printer -> text($total);
         $printer -> selectPrintMode();

@@ -252,10 +252,11 @@ class CartController extends Controller {
 
         /* Information for the receipt */
         $allItems = array(
-            new item($item['name'], $item['price'])
+            new item($item['name'], $item['price']),
         );
         $subtotal = new item('Subtotal', '12.95');
-        $tax = new item('A local tax', '1.30');
+        $tendered = new item('Cash received', $sales_group.['tendered_amount']);
+        $tendered = new item('Change', $sales_group.['change']);
         $total = new item('Total', '14.25', true);
         /* Date is kept the same for testing */
         // $date = date('l jS \of F Y h:i:s A');
@@ -298,7 +299,8 @@ class CartController extends Controller {
         $printer -> feed();
 
         /* Tax and total */
-        $printer -> text($tax);
+        $printer -> text($tendered);
+        $printer -> text($chaneg);
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
         $printer -> text($total);
         $printer -> selectPrintMode();

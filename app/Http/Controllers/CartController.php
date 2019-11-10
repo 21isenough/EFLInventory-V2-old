@@ -13,11 +13,9 @@ use App\SalesHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Response;
-use Mike42\Escpos\EscposImage;
-use Mike42\Escpos\CapabilityProfile;
 use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
-use Mike42\Escpos\PrintBuffers\ImagePrintBuffer;
 
 class CartController extends Controller {
 
@@ -260,8 +258,8 @@ class CartController extends Controller {
             new item("A final item", "4.45"),
         );
         $subtotal = new item('Subtotal', '12.95');
-        $tendered = new item('Cash received', $sales_group['tendered_amount']);
-        $tendered = new item('Change', $sales_group['change']);
+        $tendered = new item('Cash received', $sales_group['amount_tendered']);
+        $change = new item('Change', $sales_group['change_amount']);
         $total = new item('Total', '14.25', true);
         /* Date is kept the same for testing */
         // $date = date('l jS \of F Y h:i:s A');
@@ -273,13 +271,11 @@ class CartController extends Controller {
 
         $img = EscposImage::load("test.png");
 
-        $profile = CapabilityProfile::load("default");
-        
-        $buffer = new ImagePrintBuffer();
-        $connector = new FilePrintConnector("/dev/usb/lp0");
-        $printer = new Printer($connector, $profile);
-        $printer -> setPrintBuffer($buffer);
 
+        $connector = new FilePrintConnector("/dev/usb/lp0");
+
+        $printer = new Printer($connector);
+        
         /* Name of shop */
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
         $printer -> text("The Block Lisboa\n");
@@ -295,7 +291,7 @@ class CartController extends Controller {
         /* Items */
         $printer -> setJustification(Printer::JUSTIFY_LEFT);
         $printer -> setEmphasis(true);
-        $printer -> text(new item('', '€'));
+        $printer -> text(new item('', 'EUR'));
         $printer -> setEmphasis(false);
         foreach ($allItems as $item) {
             $printer -> text($item);
@@ -415,7 +411,7 @@ class item
         }
         $left = str_pad($this -> name, $leftCols) ;
         
-        $sign = ($this -> dollarSign ? '€ ' : '');
+        $sign = ($this -> dollarSign ? 'EUR ' : '');
         $right = str_pad($sign . $this -> price, $rightCols, ' ', STR_PAD_LEFT);
         return "$left$right\n";
     }

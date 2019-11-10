@@ -387,7 +387,7 @@
                                                                                  class="img-fluid">
                                                                             <span class="price-tag">
                                                                             <strong>
-                                                                                <span style="text-decoration: line-through">N</span><span class="price">{{ $product->retail_price }}</span>
+                                                                                <span>€</span><span class="price">{{ $product->retail_price }}</span>
                                                                             </strong>
                                                                         </span>
                                                                         </div>

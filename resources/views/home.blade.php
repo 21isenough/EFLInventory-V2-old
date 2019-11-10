@@ -53,7 +53,7 @@
                     <h4 class="card-title">INVENTORY SUMMARY</h4>
                     <div class="d-flex flex-row">
                         <div class="align-self-center">
-                            <span class="display-6 text-white"><span style="text-decoration: line-through">N</span>{{ number_format($inventory_summary, 2) }}</span>
+                            <span class="display-6 text-white"><span>€</span>{{ number_format($inventory_summary, 2) }}</span>
                             <h6 style="color: rgba(255,255,255,.6) !important; font-size:11px;">For {{ $total_items }} items in stock</h6>
                             <h5 class="text-white">Total Value of Inventory Stock</h5>
                         </div>

@@ -243,7 +243,7 @@ class CartController extends Controller {
         $app_settings = \DB::table("app_config")->get()->first();
 
         $data_array =  array(
-                "euro" => "0.20"
+                "euro" => divideFloat($sales_group['change_amount'],100)
         );
         
         $make_call = callAPI('POST', 'http://192.168.1.203:5000/lnurl', json_encode($data_array));

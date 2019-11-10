@@ -250,8 +250,15 @@ class CartController extends Controller {
         $response = json_decode($make_call, true);
         $lnurl    = $response['lnurl'];
 
+        function divideFloat($a, $b, $precision=2) {
+            $a*=pow(10, $precision);
+            $result=(int)($a / $b);
+            if (strlen($result)==$precision) return '0.' . $result;
+            else return preg_replace('/(\d{' . $precision . '})$/', '.\1', $result);
+        }
+
         /* Information for the receipt */
-        $subtotal = new item('Subtotal', float($sales_group['total_amount']/100));
+        $subtotal = new item('Subtotal', divideFloat($sales_group['total_amount'],100));
         $tendered = new item('Amount Paid', $sales_group['amount_tendered']);
         $change = new item('Change', $sales_group['change_amount']);
         $total = new item('Total', $sales_group['total_amount'], true);

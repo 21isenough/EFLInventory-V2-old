@@ -252,7 +252,8 @@ class CartController extends Controller {
 
         /* Information for the receipt */
         $allItems = array(
-            new item($items[1],$items[1]),
+            new item($item['name'],$item['price']),
+            new item($item['name'],$item['price']),
         );
         $subtotal = new item('Total', $sales_group['total_amount']);
         $tendered = new item('Amount Paid', $sales_group['amount_tendered']);
@@ -290,12 +291,11 @@ class CartController extends Controller {
         $printer -> setEmphasis(true);
         $printer -> text(new item('', 'EUR'));
         $printer -> setEmphasis(false);
-        foreach ($allItems as $item) {
-            $printer -> text($item);
-            
+        foreach ($items as $item) {
+            $ruben = new item($item['name'],$item['price']);
+            $printer -> text($ruben);
         }
-        $printer -> text($items);
-        $printer -> text(count($items));        
+                
         $printer -> setEmphasis(true);
         $printer -> text($subtotal);
         $printer -> setEmphasis(false);

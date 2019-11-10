@@ -260,8 +260,8 @@ class CartController extends Controller {
             new item("A final item", "4.45"),
         );
         $subtotal = new item('Subtotal', '12.95');
-        $tendered = new item('Cash received', $sales_group.['tendered_amount']);
-        $tendered = new item('Change', $sales_group.['change']);
+        $tendered = new item('Cash received', $sales_group['tendered_amount']);
+        $tendered = new item('Change', $sales_group['change']);
         $total = new item('Total', '14.25', true);
         /* Date is kept the same for testing */
         // $date = date('l jS \of F Y h:i:s A');
@@ -279,7 +279,7 @@ class CartController extends Controller {
         $connector = new FilePrintConnector("/dev/usb/lp0");
         $printer = new Printer($connector, $profile);
         $printer -> setPrintBuffer($buffer);
-        
+
         /* Name of shop */
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
         $printer -> text("The Block Lisboa\n");

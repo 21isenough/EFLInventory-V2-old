@@ -252,7 +252,7 @@ class CartController extends Controller {
 
         /* Information for the receipt */
         $allItems = array(
-            new item($items['name'],$items['price']),
+            new item($items[1],$items[1]),
         );
         $subtotal = new item('Total', $sales_group['total_amount']);
         $tendered = new item('Amount Paid', $sales_group['amount_tendered']);

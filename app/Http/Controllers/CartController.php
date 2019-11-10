@@ -312,8 +312,6 @@ class CartController extends Controller {
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
         $printer -> text($total);
         $printer -> selectPrintMode();
-
-        $printer -> cut();
         
         /* Footer */
         $printer -> feed(2);

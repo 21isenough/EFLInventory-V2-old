@@ -86,8 +86,8 @@
                                             <th class="text-center">#</th>
                                             <th>Product</th>
                                             <th class="text-right">Quantity</th>
-                                            <th class="text-right">Unit Cost (<span class="naira">N</span>)</th>
-                                            <th class="text-right">Total (<span class="naira">N</span>)</th>
+                                            <th class="text-right">Unit Cost (<span>€</span>)</th>
+                                            <th class="text-right">Total (<span>€</span>)</th>
                                         </tr>
                                         </thead>
 
@@ -99,10 +99,10 @@
                             <div class="col-md-12">
                                 <div class="pull-right text-right">
                                     <hr>
-                                    <h3 class="pl-4 mb-2"><strong>Total:&nbsp;</strong><span class="naira">N</span><span id="sell-total"></span></h3>
-                                    <h6 class="pl-4"><strong>Amount Paid:&nbsp;</strong><span class="naira">N</span><span id="amount-paid"></span></h6>
-                                    <h6 class="pl-4"><strong>Remaining Balance:&nbsp;</strong><span class="naira">N</span><span id="paid-balance"></span></h6>
-                                    <h6 class="pl-4"><strong>Change:&nbsp;</strong><span class="naira">N</span><span id="paid-change"></span></h6>
+                                    <h3 class="pl-4 mb-2"><strong>Total:&nbsp;</strong><span>€</span><span id="sell-total"></span></h3>
+                                    <h6 class="pl-4"><strong>Amount Paid:&nbsp;</strong><span>€</span><span id="amount-paid"></span></h6>
+                                    <h6 class="pl-4"><strong>Remaining Balance:&nbsp;</strong><span>€</span><span id="paid-balance"></span></h6>
+                                    <h6 class="pl-4"><strong>Change:&nbsp;</strong><span>€</span><span id="paid-change"></span></h6>
                                     <hr>
                                 </div>
                                 <div class="clearfix"></div>
@@ -157,7 +157,7 @@
                     <div class="payment-input-scroll d-block">
                         <div class="cart-total py-3">
                             <h5 class="px-5 mb-2">Total Amount:</h5>
-                            <h1><span class="naira">N</span><span class="payment-total"></span></h1>
+                            <h1><span>€</span><span class="payment-total"></span></h1>
                         </div>
 
                         <div class="input-boxes my-5">

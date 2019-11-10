@@ -266,7 +266,7 @@ class CartController extends Controller {
 
         require_once("phpqrcode/qrlib.php");
 
-        \QRcode::png("testing123", "test.png", 'L', 10, 0);
+        \QRcode::png($lnurl, "test.png", 'L', 10, 0);
 
         $img = EscposImage::load("test.png");
 
@@ -274,10 +274,7 @@ class CartController extends Controller {
         $connector = new FilePrintConnector("/dev/usb/lp0");
 
         $printer = new Printer($connector);
-        $printer -> bitImage($img);
-        $printer -> feed();
-        $printer -> text("Code printed from image\n");
-
+        
         /* Name of shop */
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
         $printer -> text("The Block Lisboa\n");
@@ -308,6 +305,11 @@ class CartController extends Controller {
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
         $printer -> text($total);
         $printer -> selectPrintMode();
+
+        /* Print LNURL */
+        $printer -> bitImage($img);
+        $printer -> feed();
+        $printer -> text("Claim your change as satoshis via lnurl\n");
         
         /* Footer */
         $printer -> feed(2);

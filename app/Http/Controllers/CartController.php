@@ -279,14 +279,6 @@ class CartController extends Controller {
         $connector = new FilePrintConnector("/dev/usb/lp0");
         $printer = new Printer($connector, $profile);
         $printer -> setPrintBuffer($buffer);
-        $printer -> text("€ 9,95\n");
-        $printer -> text("£ 9.95\n");
-        $printer -> text("$ 9.95\n");
-        $printer -> text("¥ 9.95\n");
-        $printer -> cut();
-        $printer -> close();
-
-        $printer = new Printer($connector);
         
         /* Name of shop */
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);

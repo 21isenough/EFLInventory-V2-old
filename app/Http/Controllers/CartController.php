@@ -305,15 +305,16 @@ class CartController extends Controller {
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
         $printer -> text($total);
         $printer -> selectPrintMode();
+        
+        /* Footer */
+        $printer -> feed(2);
+        $printer -> setJustification(Printer::JUSTIFY_CENTER);
 
         /* Print LNURL */
         $printer -> bitImage($img);
         $printer -> feed();
         $printer -> text("Claim your change as satoshis via lnurl\n");
-        
-        /* Footer */
-        $printer -> feed(2);
-        $printer -> setJustification(Printer::JUSTIFY_CENTER);
+
         $printer -> text("Thank you for shopping at ExampleMart\n");
         $printer -> text("For trading hours, please visit example.com\n");
         $printer -> feed(2);

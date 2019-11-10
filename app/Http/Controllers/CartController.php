@@ -242,6 +242,13 @@ class CartController extends Controller {
 
         $app_settings = \DB::table("app_config")->get()->first();
 
+        function divideFloat($a, $b, $precision=2) {
+            $a*=pow(10, $precision);
+            $result=(int)($a / $b);
+            if (strlen($result)==$precision) return '0.' . $result;
+            else return preg_replace('/(\d{' . $precision . '})$/', '.\1', $result);
+        }
+
         $data_array =  array(
                 "euro" => divideFloat($sales_group['change_amount'],100)
         );
@@ -250,13 +257,6 @@ class CartController extends Controller {
         $response = json_decode($make_call, true);
         $lnurl    = $response['lnurl'];
         $satoshi  = $response['satoshis'];
-
-        function divideFloat($a, $b, $precision=2) {
-            $a*=pow(10, $precision);
-            $result=(int)($a / $b);
-            if (strlen($result)==$precision) return '0.' . $result;
-            else return preg_replace('/(\d{' . $precision . '})$/', '.\1', $result);
-        }
 
         /* Information for the receipt */
         $subtotal = new item('Subtotal', divideFloat($sales_group['total_amount'],100));

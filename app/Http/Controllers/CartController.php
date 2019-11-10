@@ -396,19 +396,17 @@ class CartController extends Controller {
 
 class item
 {
-    private $quantity;
     private $name;
     private $price;
     private $dollarSign;
 
-    public function __construct($name = '', $price = '', $quantity = '', $dollarSign = false)
+    public function __construct($name = '', $price = '', $dollarSign = false)
     {
-        $this -> quantity = $quantity;
         $this -> name = $name;
         $this -> price = $price;
         $this -> dollarSign = $dollarSign;
     }
-
+    
     public function __toString()
     {
         $rightCols = 10;
@@ -416,8 +414,8 @@ class item
         if ($this -> dollarSign) {
             $leftCols = $leftCols / 2 - $rightCols / 2;
         }
-        $left = str_pad($this -> name, $this -> quantity, $leftCols) ;
-
+        $left = str_pad($this -> name, $leftCols) ;
+        
         $sign = ($this -> dollarSign ? 'EUR ' : '');
         $right = str_pad($sign . $this -> price, $rightCols, ' ', STR_PAD_LEFT);
         return "$left$right\n";

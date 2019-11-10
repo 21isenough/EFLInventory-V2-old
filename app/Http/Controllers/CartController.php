@@ -252,7 +252,9 @@ class CartController extends Controller {
 
         /* Information for the receipt */
         $allItems = array(
-            new item($item['name'], $item['price'])
+            foreach ($items as $item) {
+                new item($item['name'], $item['price'])
+            }            
         );
         $subtotal = new item('Subtotal', '12.95');
         $tax = new item('A local tax', '1.30');

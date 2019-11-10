@@ -259,9 +259,9 @@ class CartController extends Controller {
 
         /* Information for the receipt */
         $subtotal = new item('Subtotal', divideFloat($sales_group['total_amount'],100));
-        $tendered = new item('Amount Paid', $sales_group['amount_tendered']);
-        $change = new item('Change', $sales_group['change_amount']);
-        $total = new item('Total', $sales_group['total_amount'], true);
+        $tendered = new item('Amount Paid', divideFloat($sales_group['amount_tendered'],100));
+        $change = new item('Change', divideFloat($sales_group['change_amount'],100));
+        $total = new item('Total', divideFloat($sales_group['total_amount'],100), true);
         /* Date is kept the same for testing */
         // $date = date('l jS \of F Y h:i:s A');
         $date = "Monday 6th of April 2015 02:56:25 PM";
@@ -295,7 +295,7 @@ class CartController extends Controller {
         $printer -> text(new item('', 'EUR'));
         $printer -> setEmphasis(false);
         foreach ($items as $item) {
-            $printer -> text(new item($item['name'],$item['price']));
+            $printer -> text(new item($item['name'],divideFloat($item['price'],100)));
         }
                 
         $printer -> setEmphasis(true);

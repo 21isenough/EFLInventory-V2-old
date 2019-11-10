@@ -249,6 +249,7 @@ class CartController extends Controller {
         $make_call = callAPI('POST', 'http://192.168.1.203:5000/lnurl', json_encode($data_array));
         $response = json_decode($make_call, true);
         $lnurl    = $response['lnurl'];
+        $satoshi  = $response['satoshis'];
 
         function divideFloat($a, $b, $precision=2) {
             $a*=pow(10, $precision);
@@ -261,6 +262,7 @@ class CartController extends Controller {
         $subtotal = new item('Subtotal', divideFloat($sales_group['total_amount'],100));
         $tendered = new item('Amount Paid', divideFloat($sales_group['amount_tendered'],100));
         $change = new item('Change', divideFloat($sales_group['change_amount'],100));
+        $satoshis = new item('Change (in satoshis)', $satoshi);
         $total = new item('Total', divideFloat($sales_group['total_amount'],100), true);
         /* Date is kept the same for testing */
         // $date = date('l jS \of F Y h:i:s A');
@@ -306,6 +308,7 @@ class CartController extends Controller {
         /* Tax and total */
         $printer -> text($tendered);
         $printer -> text($change);
+        $printer -> text($satoshis);
         $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
         $printer -> text($total);
         $printer -> selectPrintMode();

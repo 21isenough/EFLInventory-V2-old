@@ -251,11 +251,7 @@ class CartController extends Controller {
         $lnurl    = $response['lnurl'];
 
         /* Information for the receipt */
-        $allItems = array(
-            new item($item['name'],$item['price']),
-            new item($item['name'],$item['price']),
-        );
-        $subtotal = new item('Subtotal', $sales_group['total_amount']/100);
+        $subtotal = new item('Subtotal', float($sales_group['total_amount']/100));
         $tendered = new item('Amount Paid', $sales_group['amount_tendered']);
         $change = new item('Change', $sales_group['change_amount']);
         $total = new item('Total', $sales_group['total_amount'], true);

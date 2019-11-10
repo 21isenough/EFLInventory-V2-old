@@ -288,9 +288,9 @@ class CartController extends Controller {
         /* Items */
         $printer -> setJustification(Printer::JUSTIFY_LEFT);
         $printer -> setEmphasis(true);
-        $printer -> text(new item('', '$'));
+        $printer -> text(new item('', '€'));
         $printer -> setEmphasis(false);
-        foreach ($allItems as $item) {
+        foreach ($items as $item) {
             $printer -> text($item);
         }
         $printer -> setEmphasis(true);
@@ -407,7 +407,7 @@ class item
         }
         $left = str_pad($this -> name, $leftCols) ;
         
-        $sign = ($this -> dollarSign ? '$ ' : '');
+        $sign = ($this -> dollarSign ? '€ ' : '');
         $right = str_pad($sign . $this -> price, $rightCols, ' ', STR_PAD_LEFT);
         return "$left$right\n";
     }

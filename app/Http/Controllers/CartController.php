@@ -257,10 +257,10 @@ class CartController extends Controller {
             new item("Something else", "1.00"),
             new item("A final item", "4.45"),
         );
-        $subtotal = new item('Subtotal', '12.95');
-        $tendered = new item('Cash received', $sales_group['amount_tendered']);
+        $subtotal = new item('Total', $sales_group['total_amount']);
+        $tendered = new item('Amount Paid', $sales_group['amount_tendered']);
         $change = new item('Change', $sales_group['change_amount']);
-        $total = new item('Total', '14.25', true);
+        $total = new item('Total', $sales_group['total_amount'], true);
         /* Date is kept the same for testing */
         // $date = date('l jS \of F Y h:i:s A');
         $date = "Monday 6th of April 2015 02:56:25 PM";
@@ -298,7 +298,6 @@ class CartController extends Controller {
         }
         $printer -> setEmphasis(true);
         $printer -> text($subtotal);
-        $printer -> text($items);
         $printer -> setEmphasis(false);
         $printer -> feed();
 
